@@ -18,7 +18,7 @@ const SettingPage = () => {
   };
 
   const toGithubRepo = useLockFn(() => {
-    return openWebUrl("https://github.com/clash-verge-rev/clash-verge-rev");
+    return openWebUrl("https://github.com/stallr/clash-vre");
   });
 
   const toGithubDoc = useLockFn(() => {
@@ -33,10 +33,10 @@ const SettingPage = () => {
       title={t("Settings")}
       header={
         <ButtonGroup variant="contained" aria-label="Basic button group">
-          <IconButton
+          {/* <IconButton
             size="medium"
             color="inherit"
-            title="@clash-verge-rev/clash-verge-rev.github.io"
+            title="@stallr/clash-vre.github.io"
             onClick={toGithubDoc}
           >
             <HelpOutlineSharp fontSize="inherit" />
@@ -44,11 +44,11 @@ const SettingPage = () => {
           <IconButton
             size="medium"
             color="inherit"
-            title="@clash-verge-rev/clash-verge-rev"
+            title="@stallr/clash-vre"
             onClick={toGithubRepo}
           >
             <GitHub fontSize="inherit" />
-          </IconButton>
+          </IconButton> */}
         </ButtonGroup>
       }
     >
