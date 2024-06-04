@@ -9,7 +9,7 @@
         <string>Clash Verge</string>
         <key>CFBundleURLSchemes</key>
         <array>
-            <string>clash</string>
+            <string>tomatocloud</string>
         </array>
     </dict>
 </array>

@@ -108,57 +108,57 @@ export const ProxyItemMini = (props: Props) => {
           {proxy.name}
         </Typography>
 
-        {showType && (
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "nowrap",
-              flex: "none",
-              marginTop: "4px",
-            }}
-          >
-            {proxy.now && (
-              <Typography
-                variant="body2"
-                component="div"
-                color="text.secondary"
-                sx={{
-                  display: "block",
-                  textOverflow: "ellipsis",
-                  wordBreak: "break-all",
-                  overflow: "hidden",
-                  whiteSpace: "nowrap",
-                  marginRight: "8px",
-                }}
-              >
-                {proxy.now}
-              </Typography>
-            )}
-            {!!proxy.provider && (
-              <TypeBox color="text.secondary" component="span">
-                {proxy.provider}
-              </TypeBox>
-            )}
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "nowrap",
+            flex: "none",
+            marginTop: "4px",
+          }}
+        >
+          {proxy.now && (
+            <Typography
+              variant="body2"
+              component="div"
+              color="text.secondary"
+              sx={{
+                display: "block",
+                textOverflow: "ellipsis",
+                wordBreak: "break-all",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                marginRight: "8px",
+              }}
+            >
+              {proxy.now}
+            </Typography>
+          )}
+          {showType && !!proxy.provider && (
+            <TypeBox color="text.secondary" component="span">
+              {proxy.provider}
+            </TypeBox>
+          )}
+          {showType && proxy.type && (
             <TypeBox color="text.secondary" component="span">
               {proxy.type}
             </TypeBox>
-            {proxy.udp && (
-              <TypeBox color="text.secondary" component="span">
-                UDP
-              </TypeBox>
-            )}
-            {proxy.xudp && (
-              <TypeBox color="text.secondary" component="span">
-                XUDP
-              </TypeBox>
-            )}
-            {proxy.tfo && (
-              <TypeBox color="text.secondary" component="span">
-                TFO
-              </TypeBox>
-            )}
-          </Box>
-        )}
+          )}
+          {showType && proxy.udp && (
+            <TypeBox color="text.secondary" component="span">
+              UDP
+            </TypeBox>
+          )}
+          {showType && proxy.xudp && (
+            <TypeBox color="text.secondary" component="span">
+              XUDP
+            </TypeBox>
+          )}
+          {showType && proxy.tfo && (
+            <TypeBox color="text.secondary" component="span">
+              TFO
+            </TypeBox>
+          )}
+        </Box>
       </Box>
       <Box sx={{ ml: 0.5, color: "primary.main" }}>
         {delay === -2 && (
