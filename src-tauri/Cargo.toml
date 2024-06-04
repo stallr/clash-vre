@@ -10,7 +10,7 @@ edition = "2021"
 build = "build.rs"
 
 [build-dependencies]
-tauri-build = { git="https://github.com/Pylogmon/tauri",branch = "1.x", features = [] }
+tauri-build = { git="https://github.com/Pylogmon/tauri", branch = "1.x", features = [] }
 
 [dependencies]
 warp = "0.3"

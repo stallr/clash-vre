@@ -146,7 +146,7 @@ pub fn create_window(app_handle: &AppHandle) {
 
             #[cfg(target_os = "macos")]
             {
-                builder = builder.inner_size(800.0, 642.0).center();
+                builder = builder.inner_size(800.0, 650.0).center();
             }
 
             #[cfg(target_os = "linux")]
