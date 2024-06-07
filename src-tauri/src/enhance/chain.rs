@@ -92,7 +92,6 @@ impl ChainSupport {
                 (ChainSupport::All, _) => true,
                 (ChainSupport::Clash, "clash") => true,
                 (ChainSupport::ClashMeta, "clash-meta") => true,
-                (ChainSupport::ClashMetaAlpha, "clash-meta-alpha") => true,
                 _ => false,
             },
             None => true,

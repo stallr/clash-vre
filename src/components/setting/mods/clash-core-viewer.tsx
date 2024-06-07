@@ -19,10 +19,7 @@ import { closeAllConnections, upgradeCore } from "@/services/api";
 import { grantPermission } from "@/services/cmds";
 import getSystem from "@/utils/get-system";
 
-const VALID_CORE = [
-  { name: "Clash Meta", core: "clash-meta" },
-  { name: "Clash Meta Alpha", core: "clash-meta-alpha" },
-];
+const VALID_CORE = [{ name: "Clash Meta", core: "clash-meta" }];
 
 const OS = getSystem();
 
@@ -63,7 +60,12 @@ export const ClashCoreViewer = forwardRef<DialogRef>((props, ref) => {
       await grantPermission(core);
       // 自动重启
       if (core === clash_core) await restartSidecar();
-      Notice.success(t("Permissions Granted Successfully for _clash Core", { core: `${core}` }), 1000);
+      Notice.success(
+        t("Permissions Granted Successfully for _clash Core", {
+          core: `${core}`,
+        }),
+        1000
+      );
     } catch (err: any) {
       Notice.error(err?.message || err.toString());
     }

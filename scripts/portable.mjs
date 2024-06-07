@@ -40,7 +40,6 @@ async function resolvePortable() {
 
   zip.addLocalFile(path.join(releaseDir, "Clash Verge.exe"));
   zip.addLocalFile(path.join(releaseDir, "clash-meta.exe"));
-  zip.addLocalFile(path.join(releaseDir, "clash-meta-alpha.exe"));
   zip.addLocalFolder(path.join(releaseDir, "resources"), "resources");
   zip.addLocalFolder(configDir, ".config");
 

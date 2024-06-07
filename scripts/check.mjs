@@ -160,26 +160,6 @@ if (!META_ALPHA_MAP[`${platform}-${arch}`]) {
   );
 }
 
-/**
- * core info
- */
-function clashMetaAlpha() {
-  const name = META_ALPHA_MAP[`${platform}-${arch}`];
-  const isWin = platform === "win32";
-  const urlExt = isWin ? "zip" : "gz";
-  const downloadURL = `${META_ALPHA_URL_PREFIX}/${name}-${META_ALPHA_VERSION}.${urlExt}`;
-  const exeFile = `${name}${isWin ? ".exe" : ""}`;
-  const zipFile = `${name}-${META_ALPHA_VERSION}.${urlExt}`;
-
-  return {
-    name: "clash-meta-alpha",
-    targetFile: `clash-meta-alpha-${SIDECAR_HOST}${isWin ? ".exe" : ""}`,
-    exeFile,
-    zipFile,
-    downloadURL,
-  };
-}
-
 function clashMeta() {
   const name = META_MAP[`${platform}-${arch}`];
   const isWin = platform === "win32";
@@ -432,13 +412,6 @@ const resolveEnableLoopback = () =>
   });
 
 const tasks = [
-  // { name: "clash", func: resolveClash, retry: 5 },
-  {
-    name: "clash-meta-alpha",
-    func: () =>
-      getLatestAlphaVersion().then(() => resolveSidecar(clashMetaAlpha())),
-    retry: 5,
-  },
   {
     name: "clash-meta",
     func: () =>
