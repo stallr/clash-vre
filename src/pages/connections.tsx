@@ -35,7 +35,7 @@ const ConnectionsPage = () => {
 
   const [setting, setSetting] = useConnectionSetting();
 
-  const isTableLayout = setting.layout === "table";
+  const isTableLayout = setting?.layout === "table";
 
   const orderOpts: Record<string, OrderFunc> = {
     Default: (list) =>
