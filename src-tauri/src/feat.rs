@@ -102,7 +102,7 @@ pub fn toggle_tun_mode() {
 
     #[cfg(any(target_os = "macos", target_os = "linux"))]
     tauri::async_runtime::spawn(async move {
-        if enable == true {
+        if !enable {
             use crate::core::manager::grant_permission;
             let clash_core = Config::verge().data().clash_core.clone();
             let clash_core: String = clash_core.unwrap_or_else(|| "clash-meta".to_owned());
