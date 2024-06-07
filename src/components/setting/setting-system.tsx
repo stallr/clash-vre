@@ -16,7 +16,6 @@ import { GuardState } from "./mods/guard-state";
 import { ServiceViewer } from "./mods/service-viewer";
 import { SysproxyViewer } from "./mods/sysproxy-viewer";
 import { TunViewer } from "./mods/tun-viewer";
-import { useLockFn } from "ahooks";
 import getSystem from "@/utils/get-system";
 import { invoke } from "@tauri-apps/api/tauri";
 interface Props {
@@ -52,16 +51,6 @@ const SettingSystem = ({ onError }: Props) => {
     mutateVerge({ ...verge, ...patch }, false);
   };
   const { clash_core = "clash-meta" } = verge ?? {};
-  const onGrant = useLockFn(async (core: string) => {
-    try {
-      await grantPermission(core);
-      // 自动重启
-      if (core === clash_core) await restartSidecar();
-      Notice.success(`Successfully grant permission to ${core}`, 1000);
-    } catch (err: any) {
-      Notice.error(err?.message || err.toString());
-    }
-  });
   const OS = getSystem();
   const isWIN = getSystem() === "windows";
   const onGuard = async (e: boolean) => {
@@ -111,12 +100,7 @@ const SettingSystem = ({ onError }: Props) => {
             <IconButton
               color="inherit"
               size="small"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                onGrant(clash_core);
-                tunRef.current?.open();
-              }}
+              onClick={() => tunRef.current?.open()}
             >
               <Settings
                 fontSize="inherit"
