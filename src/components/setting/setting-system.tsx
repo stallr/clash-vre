@@ -3,15 +3,22 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { IconButton, Tooltip } from "@mui/material";
 import { PrivacyTipRounded, Settings, InfoRounded } from "@mui/icons-material";
-import { checkService } from "@/services/cmds";
+import {
+  checkService,
+  grantPermission,
+  installService,
+  restartSidecar,
+} from "@/services/cmds";
 import { useVerge } from "@/hooks/use-verge";
-import { DialogRef, Switch } from "@/components/base";
+import { DialogRef, Notice, Switch } from "@/components/base";
 import { SettingList, SettingItem } from "./mods/setting-comp";
 import { GuardState } from "./mods/guard-state";
 import { ServiceViewer } from "./mods/service-viewer";
 import { SysproxyViewer } from "./mods/sysproxy-viewer";
 import { TunViewer } from "./mods/tun-viewer";
-
+import { useLockFn } from "ahooks";
+import getSystem from "@/utils/get-system";
+import { invoke } from "@tauri-apps/api/tauri";
 interface Props {
   onError?: (err: Error) => void;
 }
@@ -44,7 +51,45 @@ const SettingSystem = ({ onError }: Props) => {
   const onChangeData = (patch: Partial<IVergeConfig>) => {
     mutateVerge({ ...verge, ...patch }, false);
   };
-
+  const { clash_core = "clash-meta" } = verge ?? {};
+  const onGrant = useLockFn(async (core: string) => {
+    try {
+      await grantPermission(core);
+      // 自动重启
+      if (core === clash_core) await restartSidecar();
+      Notice.success(`Successfully grant permission to ${core}`, 1000);
+    } catch (err: any) {
+      Notice.error(err?.message || err.toString());
+    }
+  });
+  const OS = getSystem();
+  const isWIN = getSystem() === "windows";
+  const onGuard = async (e: boolean) => {
+    if (OS === "macos" || OS === "linux") {
+      try {
+        await grantPermission(clash_core);
+      } catch (err: any) {
+        Notice.error(err?.message || err.toString());
+        return false;
+      }
+      await restartSidecar();
+    } else {
+      try {
+        const result = await invoke<any>("check_service");
+        if (result?.code !== 0 && result?.code !== 400) {
+          await installService();
+        }
+      } catch (err: any) {
+        try {
+          await installService();
+        } catch (err: any) {
+          Notice.error(err?.message || err.toString());
+          return false;
+        }
+      }
+    }
+    return true;
+  };
   return (
     <SettingList title={t("System Setting")}>
       <SysproxyViewer ref={sysproxyRef} />
@@ -66,7 +111,12 @@ const SettingSystem = ({ onError }: Props) => {
             <IconButton
               color="inherit"
               size="small"
-              onClick={() => tunRef.current?.open()}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onGrant(clash_core);
+                tunRef.current?.open();
+              }}
             >
               <Settings
                 fontSize="inherit"
@@ -81,8 +131,15 @@ const SettingSystem = ({ onError }: Props) => {
           valueProps="checked"
           onCatch={onError}
           onFormat={onSwitchFormat}
-          onChange={(e) => onChangeData({ enable_tun_mode: e })}
-          onGuard={(e) => patchVerge({ enable_tun_mode: e })}
+          onChange={async (e) => {
+            if (e === false || (await onGuard(e))) {
+              const vergeOptions = isWIN
+                ? { enable_service_mode: true, enable_tun_mode: e }
+                : { enable_tun_mode: e };
+              patchVerge(vergeOptions);
+              onChangeData(vergeOptions);
+            }
+          }}
         >
           <Switch edge="end" />
         </GuardState>

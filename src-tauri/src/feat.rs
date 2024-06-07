@@ -88,17 +88,55 @@ pub fn toggle_system_proxy() {
 pub fn toggle_tun_mode() {
     let enable = Config::verge().data().enable_tun_mode;
     let enable = enable.unwrap_or(false);
-
-    tauri::async_runtime::spawn(async move {
+    let patch_verge_async = async move {
         match patch_verge(IVerge {
             enable_tun_mode: Some(!enable),
+            #[cfg(target_os = "windows")]
+            enable_service_mode: Some(true),
             ..IVerge::default()
-        })
-        .await
-        {
+        }).await {
             Ok(_) => handle::Handle::refresh_verge(),
             Err(err) => log::error!(target: "app", "{err}"),
         }
+    };
+
+    #[cfg(any(target_os = "macos", target_os = "linux"))]
+    tauri::async_runtime::spawn(async move {
+        if enable == true {
+            use crate::core::manager::grant_permission;
+            let clash_core = Config::verge().data().clash_core.clone();
+            let clash_core: String = clash_core.unwrap_or_else(|| "clash-meta".to_owned());
+            if let Err(err) = grant_permission(clash_core) {
+                log::error!(target: "app", "Grant Permission Error: {err}");
+                return;
+            }
+            let _ = crate::cmds::restart_sidecar().await;
+        }
+        patch_verge_async.await;
+    });
+    
+    #[cfg(target_os = "windows")]
+    tauri::async_runtime::spawn(async move {
+        match crate::cmds::service::check_service().await {
+            Ok(response) => {
+                match &response.code {
+                    0 | 400 => (),
+                    _ => {
+                        if let Err(e) = crate::cmds::service::install_service().await {
+                            log::error!("Error installing service: {}", e);
+                            return;
+                        }
+                    }
+                }
+            },
+            Err(_) => {
+                if let Err(e) = crate::cmds::service::install_service().await {
+                    log::error!("Error installing service: {}", e);
+                    return;
+                }
+            }
+        }
+        patch_verge_async.await;
     });
 }
 
