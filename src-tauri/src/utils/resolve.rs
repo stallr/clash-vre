@@ -238,8 +238,8 @@ pub fn save_window_size_position(app_handle: &AppHandle, save_to_file: bool) -> 
 
 pub async fn resolve_scheme(param: String) {
     let url = param
-    .trim_start_matches("tomatocloud://install-config?url=")
-    .trim_start_matches("tomatocloud://install-config/?url=");
+    .trim_start_matches("clash://install-config?url=")
+    .trim_start_matches("clash://install-config/?url=");
     let option = PrfOption {
         user_agent: None,
         with_proxy: Some(true),

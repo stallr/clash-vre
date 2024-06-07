@@ -6,4 +6,4 @@ Icon={{{icon}}}
 Name={{{name}}}
 Terminal=false
 Type=Application
-MimeType=x-scheme-handler/tomatocloud;
+MimeType=x-scheme-handler/clash;
