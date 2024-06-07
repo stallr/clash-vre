@@ -257,7 +257,7 @@ pub async fn resolve_scheme(param: String) {
     } else {
         notification::Notification::new(crate::utils::dirs::APP_ID)
             .title("Clash Verge")
-            .body("Import profile failed")
+            .body(param)
             .show()
             .unwrap();
         log::error!("failed to parse url: {}", url);
