@@ -253,7 +253,7 @@ export const getGroupProxyDelays = async (
 ) => {
   const params = {
     timeout: timeout || 10000,
-    url: url || "http://1.1.1.1",
+    url: url || "http://www.google.com/generate_204",
   };
   const instance = await getAxios();
   const result = await instance.get(

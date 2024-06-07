@@ -273,7 +273,7 @@ pub fn init_scheme() -> Result<()> {
     let output = std::process::Command::new("xdg-mime")
         .arg("default")
         .arg("clash-verge.desktop")
-        .arg("x-scheme-handler/clash")
+        .arg("x-scheme-handler/tomatocloud")
         .output()?;
     if !output.status.success() {
         return Err(anyhow::anyhow!(
