@@ -35,7 +35,7 @@ impl IClashTemp {
         tun.insert("stack".into(), "gvisor".into());
         tun.insert("device".into(), "Meta".into());
         tun.insert("auto-route".into(), true.into());
-        tun.insert("strict-route".into(), false.into());
+        tun.insert("strict-route".into(), true.into());
         tun.insert("auto-detect-interface".into(), true.into());
         tun.insert("dns-hijack".into(), vec!["any:53"].into());
         tun.insert("mtu".into(), 1500.into());

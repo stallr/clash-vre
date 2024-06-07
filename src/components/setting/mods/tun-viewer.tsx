@@ -27,7 +27,7 @@ export const TunViewer = forwardRef<DialogRef>((props, ref) => {
     autoRoute: true,
     autoDetectInterface: true,
     dnsHijack: ["any:53"],
-    strictRoute: false,
+    strictRoute: true,
     mtu: 1500,
   });
 
@@ -40,7 +40,7 @@ export const TunViewer = forwardRef<DialogRef>((props, ref) => {
         autoRoute: clash?.tun["auto-route"] ?? true,
         autoDetectInterface: clash?.tun["auto-detect-interface"] ?? true,
         dnsHijack: clash?.tun["dns-hijack"] ?? ["any:53"],
-        strictRoute: clash?.tun["strict-route"] ?? false,
+        strictRoute: clash?.tun["strict-route"] ?? true,
         mtu: clash?.tun.mtu ?? 1500,
       });
     },
@@ -94,7 +94,7 @@ export const TunViewer = forwardRef<DialogRef>((props, ref) => {
                 "auto-route": true,
                 "auto-detect-interface": true,
                 "dns-hijack": ["any:53"],
-                "strict-route": false,
+                "strict-route": true,
                 mtu: 1500,
               };
               setValues({
@@ -103,7 +103,7 @@ export const TunViewer = forwardRef<DialogRef>((props, ref) => {
                 autoRoute: true,
                 autoDetectInterface: true,
                 dnsHijack: ["any:53"],
-                strictRoute: false,
+                strictRoute: true,
                 mtu: 1500,
               });
               await patchClash({ tun });
