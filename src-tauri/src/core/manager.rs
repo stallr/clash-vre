@@ -85,10 +85,7 @@ pub fn getcore_path(path: &str) -> bool {
         Ok(metadata) => {
             let is_owner_root = metadata.uid() == 0;
             let is_group_root = metadata.gid() == 0; // 在很多Linux系统上，root组的GID为0
-            let permissions = metadata.mode();
-            let is_setuid_set = permissions & 0o4000 != 0;
-            let is_setgid_set = permissions & 0o2000 != 0;
-            is_owner_root && is_group_root && is_setuid_set && is_setgid_set
+            is_owner_root && is_group_root
         }
         Err(_) => false,
     }
