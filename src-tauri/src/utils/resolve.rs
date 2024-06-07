@@ -257,7 +257,7 @@ pub async fn resolve_scheme(param: String) {
     } else {
         notification::Notification::new(crate::utils::dirs::APP_ID)
             .title("Clash Verge")
-            .body(param.to_string())
+            .body(url.to_string())
             .show()
             .unwrap();
         log::error!("failed to parse url: {}", url);
