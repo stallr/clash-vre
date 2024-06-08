@@ -5,7 +5,6 @@ use serde::{Deserialize, Serialize};
 use serde_yaml::Mapping;
 use std::fs;
 use sysproxy::Sysproxy;
-use sysinfo::{System, SystemExt};
 
 use super::Config;
 
@@ -224,10 +223,9 @@ impl PrfItem {
                 }
             }
         }
-        let mut system = System::new_all();
-        system.refresh_all();
-        let os_name = system.name().unwrap_or_else(|| "unknown".to_string());
-        let os_version = system.os_version().unwrap_or_else(|| "unknown".to_string());
+        
+        let os_name = sysinfo::System::name().unwrap_or_else(|| "unknown".to_string());
+        let os_version = sysinfo::System::os_version().unwrap_or_else(|| "unknown".to_string());
         let version = match VERSION.get() {
             Some(v) => format!("clash-vre/v{}/{os_name} {os_version}", v),
             None => "clash-vre/unknown".to_string(),
