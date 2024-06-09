@@ -13,7 +13,7 @@
   "tauri": {
     "bundle": {
       "active": true,
-      "identifier": "io.github.stallr.clash-vre",
+      "identifier": "us.un.clashrev",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -29,11 +29,7 @@
       "longDescription": "A Clash Meta GUI based on tauri."
     },
     "updater": {
-      "active": true,
-      "endpoints": [
-        "https://mirror.ghproxy.com/https://github.com/stallr/clash-vre/releases/download/updater/update-proxy.json",
-        "https://github.com/stallr/clash-vre/releases/download/updater/update.json"
-      ],
+      "active": false,
       "dialog": false,
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDMzMTVGQ0NEOUY1QzBBNTQKUldSVUNseWZ6ZndWTTFvOFB0cmNsYWZFRCtwRkFvMlVjbXdmMjNZMUd5TGJrQjdta1UyVkJTWVoK"
     },

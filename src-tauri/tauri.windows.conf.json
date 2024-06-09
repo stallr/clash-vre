@@ -5,7 +5,7 @@
       "iconPath": "icons/tray-icon.ico"
     },
     "bundle": {
-      "identifier": "io.github.stallr.clash-vre",
+      "identifier": "us.un.clashrev",
       "targets": ["nsis", "updater"],
       "windows": {
         "certificateThumbprint": null,

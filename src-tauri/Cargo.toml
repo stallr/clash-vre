@@ -4,7 +4,6 @@ version = "1.6.5"
 description = "clash verge"
 authors = ["null"]
 license = "GPL-3.0-only"
-repository = "https://github.com/stallr/clash-vre.git"
 default-run = "clash-verge"
 edition = "2021"
 build = "build.rs"

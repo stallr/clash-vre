@@ -5,7 +5,7 @@
       "iconPath": "icons/tray-icon.ico"
     },
     "bundle": {
-      "identifier": "io.github.stallr.clash-vre",
+      "identifier": "us.un.clashrev",
       "targets": ["nsis", "updater"],
       "windows": {
         "certificateThumbprint": null,
@@ -26,12 +26,8 @@
       }
     },
     "updater": {
-      "active": true,
+      "active": false,
       "dialog": false,
-      "endpoints": [
-        "https://mirror.ghproxy.com/https://github.com/stallr/clash-vre/releases/download/updater/update-fixed-webview2-proxy.json",
-        "https://github.com/stallr/clash-vre/releases/download/updater/update-fixed-webview2.json"
-      ],
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDMzMTVGQ0NEOUY1QzBBNTQKUldSVUNseWZ6ZndWTTFvOFB0cmNsYWZFRCtwRkFvMlVjbXdmMjNZMUd5TGJrQjdta1UyVkJTWVoK"
     }
   }

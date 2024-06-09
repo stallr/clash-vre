@@ -15,15 +15,6 @@ const SettingPage = () => {
   const onError = (err: any) => {
     Notice.error(err?.message || err.toString());
   };
-
-  const toGithubRepo = useLockFn(() => {
-    return openWebUrl("https://github.com/stallr/clash-vre");
-  });
-
-  const toGithubDoc = useLockFn(() => {
-    return openWebUrl("https://clash-verge-rev.github.io/guide/log.html");
-  });
-
   const mode = useThemeMode();
   const isDark = mode === "light" ? false : true;
 
@@ -31,24 +22,10 @@ const SettingPage = () => {
     <BasePage
       title={t("Settings")}
       header={
-        <ButtonGroup variant="contained" aria-label="Basic button group">
-          {/* <IconButton
-            size="medium"
-            color="inherit"
-            title="@stallr/clash-vre.github.io"
-            onClick={toGithubDoc}
-          >
-            <HelpOutlineSharp fontSize="inherit" />
-          </IconButton>
-          <IconButton
-            size="medium"
-            color="inherit"
-            title="@stallr/clash-vre"
-            onClick={toGithubRepo}
-          >
-            <GitHub fontSize="inherit" />
-          </IconButton> */}
-        </ButtonGroup>
+        <ButtonGroup
+          variant="contained"
+          aria-label="Basic button group"
+        ></ButtonGroup>
       }
     >
       <Grid container spacing={{ xs: 1.5, lg: 1.5 }}>
