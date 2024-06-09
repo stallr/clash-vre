@@ -6,7 +6,7 @@
     },
     "bundle": {
       "identifier": "us.un.clashrev",
-      "targets": ["nsis", "updater"],
+      "targets": ["nsis"],
       "windows": {
         "certificateThumbprint": null,
         "digestAlgorithm": "sha256",

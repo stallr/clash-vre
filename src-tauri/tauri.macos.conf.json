@@ -7,7 +7,7 @@
     },
     "bundle": {
       "identifier": "us.un.clashrev",
-      "targets": ["app", "dmg", "updater"],
+      "targets": ["app", "dmg"],
       "macOS": {
         "frameworks": [],
         "minimumSystemVersion": "10.15",

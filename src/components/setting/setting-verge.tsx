@@ -237,7 +237,7 @@ const SettingVerge = ({ onError }: Props) => {
 
       <SettingItem onClick={openLogsDir} label={t("Open Logs Dir")} />
 
-      <SettingItem onClick={onCheckUpdate} label={t("Check for Updates")} />
+      {/* <SettingItem onClick={onCheckUpdate} label={t("Check for Updates")} /> */}
 
       <SettingItem onClick={openDevTools} label={t("Open Dev Tools")} />
 
