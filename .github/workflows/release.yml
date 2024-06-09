@@ -69,7 +69,7 @@ jobs:
           tagName: v__VERSION__
           releaseName: "Clash Verge Rev v__VERSION__"
           releaseBody: "More new features are now supported."
-          tauriScript: pnpm
+          tauriScript: cargo tauri
           args: --target ${{ matrix.target }}
 
       - name: Portable Bundle
