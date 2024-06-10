@@ -81,7 +81,7 @@ pub fn delete_log() -> Result<()> {
     let auto_log_clean = {
         let verge = Config::verge();
         let verge = verge.data();
-        verge.auto_log_clean.unwrap_or(0)
+        verge.auto_log_clean.unwrap_or(1)
     };
 
     let day = match auto_log_clean {
