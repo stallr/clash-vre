@@ -35,7 +35,7 @@ importers:
         specifier: ^5.15.19
         version: 5.15.19(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       "@mui/x-data-grid":
-        specifier: ^6.20.0
+        specifier: ^6.20.1
         version: 6.20.1(@mui/material@5.15.19(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       "@tauri-apps/api":
         specifier: ^1.5.6
@@ -68,7 +68,7 @@ importers:
         specifier: ^0.49.0
         version: 0.49.0
       monaco-yaml:
-        specifier: ^5.1.1
+        specifier: ^5.2.0
         version: 5.2.0(monaco-editor@0.49.0)
       nanoid:
         specifier: ^5.0.7
@@ -136,12 +136,12 @@ importers:
         version: 4.4.10
       "@vitejs/plugin-legacy":
         specifier: ^5.4.1
-        version: 5.4.1(terser@5.31.1)(vite@5.2.13(@types/node@20.14.2)(sass@1.77.4)(terser@5.31.1))
+        version: 5.4.1(terser@5.31.1)(vite@5.2.13(@types/node@20.14.2)(sass@1.77.5)(terser@5.31.1))
       "@vitejs/plugin-react":
-        specifier: ^4.3.0
-        version: 4.3.0(vite@5.2.13(@types/node@20.14.2)(sass@1.77.4)(terser@5.31.1))
+        specifier: ^4.3.1
+        version: 4.3.1(vite@5.2.13(@types/node@20.14.2)(sass@1.77.5)(terser@5.31.1))
       adm-zip:
-        specifier: ^0.5.13
+        specifier: ^0.5.14
         version: 0.5.14
       cross-env:
         specifier: ^7.0.3
@@ -165,23 +165,23 @@ importers:
         specifier: ^3.3.1
         version: 3.3.1(prettier@2.8.8)
       sass:
-        specifier: ^1.77.4
-        version: 1.77.4
+        specifier: ^1.77.5
+        version: 1.77.5
       terser:
-        specifier: ^5.31.0
+        specifier: ^5.31.1
         version: 5.31.1
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
       vite:
-        specifier: ^5.2.12
-        version: 5.2.13(@types/node@20.14.2)(sass@1.77.4)(terser@5.31.1)
+        specifier: ^5.2.13
+        version: 5.2.13(@types/node@20.14.2)(sass@1.77.5)(terser@5.31.1)
       vite-plugin-monaco-editor:
         specifier: ^1.1.0
         version: 1.1.0(monaco-editor@0.49.0)
       vite-plugin-svgr:
         specifier: ^4.2.0
-        version: 4.2.0(rollup@4.18.0)(typescript@5.4.5)(vite@5.2.13(@types/node@20.14.2)(sass@1.77.4)(terser@5.31.1))
+        version: 4.2.0(rollup@4.18.0)(typescript@5.4.5)(vite@5.2.13(@types/node@20.14.2)(sass@1.77.5)(terser@5.31.1))
 
 packages:
   "@actions/github@5.1.1":
@@ -2302,10 +2302,10 @@ packages:
       terser: ^5.4.0
       vite: ^5.0.0
 
-  "@vitejs/plugin-react@4.3.0":
+  "@vitejs/plugin-react@4.3.1":
     resolution:
       {
-        integrity: sha512-KcEbMsn4Dpk+LIbHMj7gDPRKaTMStxxWRkRmxsg/jVdFdJCZWt1SchZcf0M4t8lIKdwwMsEyzhrcOXRrDPtOBw==,
+        integrity: sha512-m/V2syj5CuVnaxcUJOQRel/Wr31FFXRFlnOoq1TVtkCxsY5veGMTEmpWHndrhB2U8ScHtCQB1e+4hWYExQc6Lg==,
       }
     engines: { node: ^14.18.0 || >=16.0.0 }
     peerDependencies:
@@ -2441,10 +2441,10 @@ packages:
     peerDependencies:
       browserslist: "*"
 
-  browserslist@4.23.0:
+  browserslist@4.23.1:
     resolution:
       {
-        integrity: sha512-QW8HiM1shhT2GuzkvklfjcKDiWFXHOeFCIA/huJPwHsslwcydgk7X+z2zXpEijP98UCY7HbubZt5J2Zgvf0CaQ==,
+        integrity: sha512-TUfofFo/KsK/bWZ9TWQ5O26tsWW4Uhmt8IYklbnUa70udB6P2wA7w7o4PY4muaEPBQaAX+CEnmmIA41NVHtPVw==,
       }
     engines: { node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7 }
     hasBin: true
@@ -2469,10 +2469,10 @@ packages:
       }
     engines: { node: ">=10" }
 
-  caniuse-lite@1.0.30001629:
+  caniuse-lite@1.0.30001632:
     resolution:
       {
-        integrity: sha512-c3dl911slnQhmxUIT4HhYzT7wnBK/XYpGnYLOj4nJBaRiw52Ibe7YxlDaAeRECvA786zCuExhxIUJ2K7nHMrBw==,
+        integrity: sha512-udx3o7yHJfUxMLkGohMlVHCvFvWmirKh9JAH/d7WOLPetlH+LTL5cocMZ0t7oZx/mdlOWXti97xLZWc8uURRHg==,
       }
 
   ccount@2.0.1:
@@ -2703,10 +2703,10 @@ packages:
         integrity: sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==,
       }
 
-  electron-to-chromium@1.4.796:
+  electron-to-chromium@1.4.799:
     resolution:
       {
-        integrity: sha512-NglN/xprcM+SHD2XCli4oC6bWe6kHoytcyLKCWXmRL854F0qhPhaYgUswUsglnPxYaNQIg2uMY4BvaomIf3kLA==,
+        integrity: sha512-3D3DwWkRTzrdEpntY0hMLYwj7SeBk1138CkPE8sBDSj3WzrzOiG2rHm3luw8jucpf+WiyLBCZyU9lMHyQI9M9Q==,
       }
 
   end-of-stream@1.4.4:
@@ -3972,10 +3972,10 @@ packages:
     engines: { node: ">=18.0.0", npm: ">=8.0.0" }
     hasBin: true
 
-  sass@1.77.4:
+  sass@1.77.5:
     resolution:
       {
-        integrity: sha512-vcF3Ckow6g939GMA4PeU7b2K/9FALXk2KF9J87txdHzXbUF9XRQRwSxcAs/fGaTnJeBFd7UoV22j3lzMLdM0Pw==,
+        integrity: sha512-oDfX1mukIlxacPdQqNb6mV2tVCrnE+P3nVYioy72V5tlk56CPNcO4TCuFcaCRKKfJ1M3lH95CleRS+dVKL2qMg==,
       }
     engines: { node: ">=14.0.0" }
     hasBin: true
@@ -4452,10 +4452,10 @@ packages:
       }
     engines: { node: ">= 6" }
 
-  yaml@2.4.3:
+  yaml@2.4.5:
     resolution:
       {
-        integrity: sha512-sntgmxj8o7DE7g/Qi60cqpLBA3HG3STcDA0kO+WfB05jEKhZMbY7umNm2rBpQvsmZ16/lPXCJGW2672dgOUkrg==,
+        integrity: sha512-aBx2bnqDzVOyNKfsysjA2ms5ZlnjSAW2eG3/L5G/CSujfjLJTJsEw1bGw8kCf04KodQWk1pxlGnZ56CRxiawmg==,
       }
     engines: { node: ">= 14" }
     hasBin: true
@@ -4535,7 +4535,7 @@ snapshots:
     dependencies:
       "@babel/compat-data": 7.24.7
       "@babel/helper-validator-option": 7.24.7
-      browserslist: 4.23.0
+      browserslist: 4.23.1
       lru-cache: 5.1.1
       semver: 6.3.1
 
@@ -5964,29 +5964,29 @@ snapshots:
 
   "@ungap/structured-clone@1.2.0": {}
 
-  "@vitejs/plugin-legacy@5.4.1(terser@5.31.1)(vite@5.2.13(@types/node@20.14.2)(sass@1.77.4)(terser@5.31.1))":
+  "@vitejs/plugin-legacy@5.4.1(terser@5.31.1)(vite@5.2.13(@types/node@20.14.2)(sass@1.77.5)(terser@5.31.1))":
     dependencies:
       "@babel/core": 7.24.7
       "@babel/preset-env": 7.24.7(@babel/core@7.24.7)
-      browserslist: 4.23.0
-      browserslist-to-esbuild: 2.1.1(browserslist@4.23.0)
+      browserslist: 4.23.1
+      browserslist-to-esbuild: 2.1.1(browserslist@4.23.1)
       core-js: 3.37.1
       magic-string: 0.30.10
       regenerator-runtime: 0.14.1
       systemjs: 6.15.1
       terser: 5.31.1
-      vite: 5.2.13(@types/node@20.14.2)(sass@1.77.4)(terser@5.31.1)
+      vite: 5.2.13(@types/node@20.14.2)(sass@1.77.5)(terser@5.31.1)
     transitivePeerDependencies:
       - supports-color
 
-  "@vitejs/plugin-react@4.3.0(vite@5.2.13(@types/node@20.14.2)(sass@1.77.4)(terser@5.31.1))":
+  "@vitejs/plugin-react@4.3.1(vite@5.2.13(@types/node@20.14.2)(sass@1.77.5)(terser@5.31.1))":
     dependencies:
       "@babel/core": 7.24.7
       "@babel/plugin-transform-react-jsx-self": 7.24.7(@babel/core@7.24.7)
       "@babel/plugin-transform-react-jsx-source": 7.24.7(@babel/core@7.24.7)
       "@types/babel__core": 7.20.5
       react-refresh: 0.14.2
-      vite: 5.2.13(@types/node@20.14.2)(sass@1.77.4)(terser@5.31.1)
+      vite: 5.2.13(@types/node@20.14.2)(sass@1.77.5)(terser@5.31.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -6074,17 +6074,17 @@ snapshots:
     dependencies:
       fill-range: 7.1.1
 
-  browserslist-to-esbuild@2.1.1(browserslist@4.23.0):
+  browserslist-to-esbuild@2.1.1(browserslist@4.23.1):
     dependencies:
-      browserslist: 4.23.0
+      browserslist: 4.23.1
       meow: 13.2.0
 
-  browserslist@4.23.0:
+  browserslist@4.23.1:
     dependencies:
-      caniuse-lite: 1.0.30001629
-      electron-to-chromium: 1.4.796
+      caniuse-lite: 1.0.30001632
+      electron-to-chromium: 1.4.799
       node-releases: 2.0.14
-      update-browserslist-db: 1.0.16(browserslist@4.23.0)
+      update-browserslist-db: 1.0.16(browserslist@4.23.1)
 
   buffer-from@1.1.2: {}
 
@@ -6092,7 +6092,7 @@ snapshots:
 
   camelcase@6.3.0: {}
 
-  caniuse-lite@1.0.30001629: {}
+  caniuse-lite@1.0.30001632: {}
 
   ccount@2.0.1: {}
 
@@ -6148,7 +6148,7 @@ snapshots:
 
   core-js-compat@3.37.1:
     dependencies:
-      browserslist: 4.23.0
+      browserslist: 4.23.1
 
   core-js@3.37.1: {}
 
@@ -6213,7 +6213,7 @@ snapshots:
       no-case: 3.0.4
       tslib: 2.6.3
 
-  electron-to-chromium@1.4.796: {}
+  electron-to-chromium@1.4.799: {}
 
   end-of-stream@1.4.4:
     dependencies:
@@ -6781,7 +6781,7 @@ snapshots:
       vscode-languageserver-textdocument: 1.0.11
       vscode-languageserver-types: 3.17.5
       vscode-uri: 3.0.8
-      yaml: 2.4.3
+      yaml: 2.4.5
 
   mri@1.2.0: {}
 
@@ -7067,7 +7067,7 @@ snapshots:
       "@rollup/rollup-win32-x64-msvc": 4.18.0
       fsevents: 2.3.3
 
-  sass@1.77.4:
+  sass@1.77.5:
     dependencies:
       chokidar: 3.6.0
       immutable: 4.3.6
@@ -7231,9 +7231,9 @@ snapshots:
 
   universalify@2.0.1: {}
 
-  update-browserslist-db@1.0.16(browserslist@4.23.0):
+  update-browserslist-db@1.0.16(browserslist@4.23.1):
     dependencies:
-      browserslist: 4.23.0
+      browserslist: 4.23.1
       escalade: 3.1.2
       picocolors: 1.0.1
 
@@ -7252,18 +7252,18 @@ snapshots:
     dependencies:
       monaco-editor: 0.49.0
 
-  vite-plugin-svgr@4.2.0(rollup@4.18.0)(typescript@5.4.5)(vite@5.2.13(@types/node@20.14.2)(sass@1.77.4)(terser@5.31.1)):
+  vite-plugin-svgr@4.2.0(rollup@4.18.0)(typescript@5.4.5)(vite@5.2.13(@types/node@20.14.2)(sass@1.77.5)(terser@5.31.1)):
     dependencies:
       "@rollup/pluginutils": 5.1.0(rollup@4.18.0)
       "@svgr/core": 8.1.0(typescript@5.4.5)
       "@svgr/plugin-jsx": 8.1.0(@svgr/core@8.1.0(typescript@5.4.5))
-      vite: 5.2.13(@types/node@20.14.2)(sass@1.77.4)(terser@5.31.1)
+      vite: 5.2.13(@types/node@20.14.2)(sass@1.77.5)(terser@5.31.1)
     transitivePeerDependencies:
       - rollup
       - supports-color
       - typescript
 
-  vite@5.2.13(@types/node@20.14.2)(sass@1.77.4)(terser@5.31.1):
+  vite@5.2.13(@types/node@20.14.2)(sass@1.77.5)(terser@5.31.1):
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
@@ -7271,7 +7271,7 @@ snapshots:
     optionalDependencies:
       "@types/node": 20.14.2
       fsevents: 2.3.3
-      sass: 1.77.4
+      sass: 1.77.5
       terser: 5.31.1
 
   void-elements@3.1.0: {}
@@ -7310,6 +7310,6 @@ snapshots:
 
   yaml@1.10.2: {}
 
-  yaml@2.4.3: {}
+  yaml@2.4.5: {}
 
   zwitch@2.0.4: {}
