@@ -160,6 +160,26 @@ if (!META_ALPHA_MAP[`${platform}-${arch}`]) {
   );
 }
 
+/**
+ * core info
+ */
+function clashMetaAlpha() {
+  const name = META_ALPHA_MAP[`${platform}-${arch}`];
+  const isWin = platform === "win32";
+  const urlExt = isWin ? "zip" : "gz";
+  const downloadURL = `${META_ALPHA_URL_PREFIX}/${name}-${META_ALPHA_VERSION}.${urlExt}`;
+  const exeFile = `${name}${isWin ? ".exe" : ""}`;
+  const zipFile = `${name}-${META_ALPHA_VERSION}.${urlExt}`;
+
+  return {
+    name: "verge-mihomo-alpha",
+    targetFile: `verge-mihomo-alpha-${SIDECAR_HOST}${isWin ? ".exe" : ""}`,
+    exeFile,
+    zipFile,
+    downloadURL,
+  };
+}
+
 function clashMeta() {
   const name = META_MAP[`${platform}-${arch}`];
   const isWin = platform === "win32";
@@ -169,8 +189,8 @@ function clashMeta() {
   const zipFile = `${name}-${META_VERSION}.${urlExt}`;
 
   return {
-    name: "clash-meta",
-    targetFile: `clash-meta-${SIDECAR_HOST}${isWin ? ".exe" : ""}`,
+    name: "verge-mihomo",
+    targetFile: `verge-mihomo-${SIDECAR_HOST}${isWin ? ".exe" : ""}`,
     exeFile,
     zipFile,
     downloadURL,
@@ -412,8 +432,15 @@ const resolveEnableLoopback = () =>
   });
 
 const tasks = [
+  // { name: "clash", func: resolveClash, retry: 5 },
+  // {
+  //   name: "verge-mihomo-alpha",
+  //   func: () =>
+  //     getLatestAlphaVersion().then(() => resolveSidecar(clashMetaAlpha())),
+  //   retry: 5,
+  // },
   {
-    name: "clash-meta",
+    name: "verge-mihomo",
     func: () =>
       getLatestReleaseVersion().then(() => resolveSidecar(clashMeta())),
     retry: 5,
