@@ -6,14 +6,20 @@ import { useVerge } from "@/hooks/use-verge";
 import { useLockFn } from "ahooks";
 import { LoadingButton } from "@mui/lab";
 import { SwitchAccessShortcut, RestartAlt } from "@mui/icons-material";
-import { Box, Button, List, ListItemButton, ListItemText } from "@mui/material";
+import {
+  Box,
+  Button,
+  Chip,
+  List,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
 import { changeClashCore, restartSidecar } from "@/services/cmds";
 import { closeAllConnections, upgradeCore } from "@/services/api";
-import getSystem from "@/utils/get-system";
 
-const VALID_CORE = [{ name: "Mihomo", core: "verge-mihomo" }];
-
-const OS = getSystem();
+const VALID_CORE = [
+  { name: "Mihomo", core: "verge-mihomo", chip: "Release Version" },
+];
 
 export const ClashCoreViewer = forwardRef<DialogRef>((props, ref) => {
   const { t } = useTranslation();
@@ -106,7 +112,7 @@ export const ClashCoreViewer = forwardRef<DialogRef>((props, ref) => {
         marginTop: "-8px",
       }}
       disableOk
-      cancelBtn={t("Back")}
+      cancelBtn={t("Close")}
       onClose={() => setOpen(false)}
       onCancel={() => setOpen(false)}
     >
@@ -118,6 +124,7 @@ export const ClashCoreViewer = forwardRef<DialogRef>((props, ref) => {
             onClick={() => onCoreChange(each.core)}
           >
             <ListItemText primary={each.name} secondary={`/${each.core}`} />
+            <Chip label={t(`${each.chip}`)} size="small" />
           </ListItemButton>
         ))}
       </List>
