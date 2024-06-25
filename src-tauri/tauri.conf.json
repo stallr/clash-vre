@@ -26,7 +26,7 @@
       "externalBin": ["sidecar/verge-mihomo"],
       "copyright": "GNU General Public License v3.0",
       "category": "DeveloperTool",
-      "shortDescription": "A Clash Meta GUI based on tauri.",
+      "shortDescription": "Clash Verge",
       "longDescription": "A Clash Meta GUI based on tauri."
     },
     "updater": {
