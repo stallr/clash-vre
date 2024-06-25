@@ -105,7 +105,7 @@ pub fn toggle_tun_mode() {
         if !enable {
             use crate::core::manager::grant_permission;
             let clash_core = Config::verge().data().clash_core.clone();
-            let clash_core: String = clash_core.unwrap_or_else(|| "clash-meta".to_owned());
+            let clash_core: String = clash_core.unwrap_or_else(|| "verge-mihomo".to_owned());
             if let Err(err) = grant_permission(clash_core) {
                 log::error!(target: "app", "Grant Permission Error: {err}");
                 return;

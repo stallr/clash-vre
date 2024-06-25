@@ -27,7 +27,7 @@
       "copyright": "GNU General Public License v3.0",
       "category": "DeveloperTool",
       "shortDescription": "Clash Verge",
-      "longDescription": "A Clash Meta GUI based on tauri."
+      "longDescription": "Clash Verge"
     },
     "updater": {
       "active": false,

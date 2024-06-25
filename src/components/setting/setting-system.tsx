@@ -50,7 +50,7 @@ const SettingSystem = ({ onError }: Props) => {
   const onChangeData = (patch: Partial<IVergeConfig>) => {
     mutateVerge({ ...verge, ...patch }, false);
   };
-  const { clash_core = "clash-meta" } = verge ?? {};
+  const { clash_core = "verge-mihomo" } = verge ?? {};
   const OS = getSystem();
   const isWIN = getSystem() === "windows";
   const onGuard = async (e: boolean) => {
