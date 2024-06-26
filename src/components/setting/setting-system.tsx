@@ -18,6 +18,7 @@ import { SysproxyViewer } from "./mods/sysproxy-viewer";
 import { TunViewer } from "./mods/tun-viewer";
 import getSystem from "@/utils/get-system";
 import { invoke } from "@tauri-apps/api/tauri";
+import { TooltipIcon } from "@/components/base/base-tooltip-icon";
 interface Props {
   onError?: (err: Error) => void;
 }
@@ -88,26 +89,11 @@ const SettingSystem = ({ onError }: Props) => {
       <SettingItem
         label={t("Tun Mode")}
         extra={
-          <>
-            <Tooltip title={t("Tun Mode Info")} placement="top">
-              <IconButton color="inherit" size="small">
-                <InfoRounded
-                  fontSize="inherit"
-                  style={{ cursor: "pointer", opacity: 0.75 }}
-                />
-              </IconButton>
-            </Tooltip>
-            <IconButton
-              color="inherit"
-              size="small"
-              onClick={() => tunRef.current?.open()}
-            >
-              <Settings
-                fontSize="inherit"
-                style={{ cursor: "pointer", opacity: 0.75 }}
-              />
-            </IconButton>
-          </>
+          <TooltipIcon
+            title={t("Tun Mode Info")}
+            icon={Settings}
+            onClick={() => tunRef.current?.open()}
+          />
         }
       >
         <GuardState
@@ -132,16 +118,11 @@ const SettingSystem = ({ onError }: Props) => {
       <SettingItem
         label={t("Service Mode")}
         extra={
-          <IconButton
-            color="inherit"
-            size="small"
+          <TooltipIcon
+            title={t("Service Mode Info")}
+            icon={PrivacyTipRounded}
             onClick={() => serviceRef.current?.open()}
-          >
-            <PrivacyTipRounded
-              fontSize="inherit"
-              style={{ cursor: "pointer", opacity: 0.75 }}
-            />
-          </IconButton>
+          />
         }
       >
         <GuardState
@@ -165,24 +146,11 @@ const SettingSystem = ({ onError }: Props) => {
         label={t("System Proxy")}
         extra={
           <>
-            <Tooltip title={t("System Proxy Info")} placement="top">
-              <IconButton color="inherit" size="small">
-                <InfoRounded
-                  fontSize="inherit"
-                  style={{ cursor: "pointer", opacity: 0.75 }}
-                />
-              </IconButton>
-            </Tooltip>
-            <IconButton
-              color="inherit"
-              size="small"
+            <TooltipIcon
+              title={t("System Proxy Info")}
+              icon={Settings}
               onClick={() => sysproxyRef.current?.open()}
-            >
-              <Settings
-                fontSize="inherit"
-                style={{ cursor: "pointer", opacity: 0.75 }}
-              />
-            </IconButton>
+            />
           </>
         }
       >
@@ -213,18 +181,7 @@ const SettingSystem = ({ onError }: Props) => {
 
       <SettingItem
         label={t("Silent Start")}
-        extra={
-          <>
-            <Tooltip title={t("Silent Start Info")} placement="top">
-              <IconButton color="inherit" size="small">
-                <InfoRounded
-                  fontSize="inherit"
-                  style={{ cursor: "pointer", opacity: 0.75 }}
-                />
-              </IconButton>
-            </Tooltip>
-          </>
-        }
+        extra={<TooltipIcon title={t("Silent Start Info")} />}
       >
         <GuardState
           value={enable_silent_start ?? false}
