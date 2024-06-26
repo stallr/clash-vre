@@ -111,12 +111,35 @@ impl IProfiles {
         bail!("failed to get the profile item \"uid:{uid}\"");
     }
 
+    /// find the item by the uid
+    pub fn get_item_byname(&self, name: &String) -> Result<&PrfItem> {
+        if let Some(items) = self.items.as_ref() {
+            let some_name = Some(name.clone());
+
+            for each in items.iter() {
+                if each.name == some_name {
+                    return Ok(each);
+                }
+            }
+        }
+
+        bail!("failed to get the profile item \"name:{name}\"");
+    }
+
     /// append new item
     /// if the file_data is some
     /// then should save the data to file
     pub fn append_item(&mut self, mut item: PrfItem) -> Result<()> {
         if item.uid.is_none() {
             bail!("the uid should not be null");
+        }
+
+        if item.name.is_none() {
+            bail!("the name should not be null");
+        }
+        
+        if !self.get_item_byname(&item.name.as_ref().unwrap()).is_ok() {
+            bail!("Duplicate Name");
         }
 
         // save the file data
