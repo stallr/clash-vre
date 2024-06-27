@@ -138,7 +138,7 @@ impl IProfiles {
             bail!("the name should not be null");
         }
         
-        if !self.get_item_byname(&item.name.as_ref().unwrap()).is_ok() {
+        if self.get_item_byname(&item.name.as_ref().unwrap()).is_ok() {
             bail!("Duplicate Name");
         }
 
