@@ -207,34 +207,34 @@ export const ProfileItem = (props: Props) => {
     hasHome ? [{ label: "Home", handler: onOpenHome, disabled: false }] : []
   ).concat([
     { label: "Select", handler: onForceSelect, disabled: false },
-    { label: "Edit Info", handler: onEditInfo, disabled: false },
-    { label: "Edit File", handler: onEditFile, disabled: false },
-    {
-      label: "Edit Rules",
-      handler: onEditRules,
-      disabled: option?.rules === null,
-    },
-    {
-      label: "Edit Proxies",
-      handler: onEditProxies,
-      disabled: option?.proxies === null,
-    },
-    {
-      label: "Edit Groups",
-      handler: onEditGroups,
-      disabled: option?.groups === null,
-    },
-    {
-      label: "Edit Merge",
-      handler: onEditMerge,
-      disabled: option?.merge === null,
-    },
-    {
-      label: "Edit Script",
-      handler: onEditScript,
-      disabled: option?.script === null,
-    },
-    { label: "Open File", handler: onOpenFile, disabled: false },
+    // { label: "Edit Info", handler: onEditInfo, disabled: false },
+    // { label: "Edit File", handler: onEditFile, disabled: false },
+    // {
+    //   label: "Edit Rules",
+    //   handler: onEditRules,
+    //   disabled: option?.rules === null,
+    // },
+    // {
+    //   label: "Edit Proxies",
+    //   handler: onEditProxies,
+    //   disabled: option?.proxies === null,
+    // },
+    // {
+    //   label: "Edit Groups",
+    //   handler: onEditGroups,
+    //   disabled: option?.groups === null,
+    // },
+    // {
+    //   label: "Edit Merge",
+    //   handler: onEditMerge,
+    //   disabled: option?.merge === null,
+    // },
+    // {
+    //   label: "Edit Script",
+    //   handler: onEditScript,
+    //   disabled: option?.script === null,
+    // },
+    // { label: "Open File", handler: onOpenFile, disabled: false },
     { label: "Update", handler: () => onUpdate(0), disabled: false },
     { label: "Update(Proxy)", handler: () => onUpdate(2), disabled: false },
     {
@@ -330,7 +330,7 @@ export const ProfileItem = (props: Props) => {
         )}
         <Box position="relative">
           <Box sx={{ display: "flex", justifyContent: "start" }}>
-            <Box
+            {/* <Box
               ref={setNodeRef}
               sx={{ display: "flex", margin: "auto 0" }}
               {...attributes}
@@ -344,11 +344,11 @@ export const ProfileItem = (props: Props) => {
                   },
                 ]}
               />
-            </Box>
+            </Box> */}
 
             <Typography
               width="calc(100% - 36px)"
-              sx={{ fontSize: "18px", fontWeight: "600", lineHeight: "26px" }}
+              sx={{ fontSize: "24px", fontWeight: "520", lineHeight: "28px" }}
               variant="h6"
               component="h2"
               noWrap
@@ -385,7 +385,7 @@ export const ProfileItem = (props: Props) => {
         <Box sx={boxStyle}>
           {
             <>
-              {description ? (
+              {/* {description ? (
                 <Typography
                   noWrap
                   title={description}
@@ -399,7 +399,7 @@ export const ProfileItem = (props: Props) => {
                     {from}
                   </Typography>
                 )
-              )}
+              )} */}
               {hasUrl && (
                 <Typography
                   noWrap
