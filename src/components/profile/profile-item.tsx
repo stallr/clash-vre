@@ -395,11 +395,16 @@ export const ProfileItem = (props: Props) => {
                   {description}
                 </Typography>
               ) : (
-                hasUrl && (
-                  <Typography noWrap title={`${t("From")} ${from}`}>
-                    {from}
-                  </Typography>
-                )
+                hasUrl && ( */}
+              <Typography
+                noWrap
+                flex="1 0 auto"
+                fontSize={14}
+                textAlign="right"
+              >
+                ${t("Update Time")}
+              </Typography>
+              {/* )
               )} */}
               {hasUrl && (
                 <Typography
