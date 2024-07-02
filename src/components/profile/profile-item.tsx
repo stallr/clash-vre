@@ -499,7 +499,6 @@ export const ProfileItem = (props: Props) => {
         property={option?.proxies ?? ""}
         open={proxiesOpen}
         language="yaml"
-        schema={undefined}
         onChange={onChange}
         onClose={() => setProxiesOpen(false)}
       />
@@ -508,7 +507,6 @@ export const ProfileItem = (props: Props) => {
         property={option?.groups ?? ""}
         open={groupsOpen}
         language="yaml"
-        schema={undefined}
         onChange={onChange}
         onClose={() => setGroupsOpen(false)}
       />
@@ -517,7 +515,7 @@ export const ProfileItem = (props: Props) => {
         property={option?.merge ?? ""}
         open={mergeOpen}
         language="yaml"
-        schema="merge"
+        schema="clash"
         onChange={onChange}
         onClose={() => setMergeOpen(false)}
       />
@@ -526,7 +524,6 @@ export const ProfileItem = (props: Props) => {
         property={option?.script ?? ""}
         open={scriptOpen}
         language="javascript"
-        schema={undefined}
         onChange={onChange}
         onClose={() => setScriptOpen(false)}
       />
