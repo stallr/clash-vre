@@ -127,12 +127,10 @@ impl IProfiles {
             bail!("the uid should not be null");
         }
 
-        if item.name.is_none() {
-            bail!("the name should not be null");
-        }
-        
-        if self.get_item_byname(&item.name.as_ref().unwrap()).is_ok() {
-            bail!("Duplicate Name");
+        if let Some(ref name) = item.name {
+            if self.get_item_byname(name).is_ok() {
+                bail!("Duplicate Name");
+            }
         }
 
         // save the file data
