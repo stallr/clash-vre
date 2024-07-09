@@ -391,12 +391,12 @@ const ProfilePage = () => {
             </Grid>
           </Box>
         </DndContext>
-        <Divider
+        {/* <Divider
           variant="middle"
           flexItem
           sx={{ width: `calc(100% - 32px)`, borderColor: dividercolor }}
-        ></Divider>
-        <Box sx={{ mt: 1.5 }}>
+        ></Divider> */}
+        {/* <Box sx={{ mt: 1.5 }}>
           <Grid container spacing={{ xs: 1, lg: 1 }}>
             <Grid item xs={12} sm={6} md={6} lg={6}>
               <ProfileMore
@@ -420,7 +420,7 @@ const ProfilePage = () => {
               />
             </Grid>
           </Grid>
-        </Box>
+        </Box> */}
       </Box>
 
       <ProfileViewer ref={viewerRef} onChange={() => mutateProfiles()} />
