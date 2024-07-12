@@ -65,6 +65,7 @@ fn main() -> std::io::Result<()> {
             cmds::get_runtime_exists,
             cmds::get_runtime_logs,
             cmds::uwp::invoke_uwp_tool,
+            cmds::copy_clash_env,
             // verge
             cmds::get_verge_config,
             cmds::patch_verge_config,
