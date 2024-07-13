@@ -2,7 +2,7 @@ import { Box, ButtonGroup, Grid, IconButton } from "@mui/material";
 import { useLockFn } from "ahooks";
 import { useTranslation } from "react-i18next";
 import { BasePage, Notice } from "@/components/base";
-import { GitHub, HelpOutlineSharp } from "@mui/icons-material";
+import { GitHub, HelpOutlineRounded, Telegram } from "@mui/icons-material";
 import { openWebUrl } from "@/services/cmds";
 import SettingVerge from "@/components/setting/setting-verge";
 import SettingClash from "@/components/setting/setting-clash";

@@ -1,8 +1,7 @@
 import useSWR from "swr";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { IconButton, Tooltip } from "@mui/material";
-import { PrivacyTipRounded, Settings, InfoRounded } from "@mui/icons-material";
+import { PrivacyTipRounded, SettingsRounded } from "@mui/icons-material";
 import {
   checkService,
   grantPermission,
@@ -91,7 +90,7 @@ const SettingSystem = ({ onError }: Props) => {
         extra={
           <TooltipIcon
             title={t("Tun Mode Info")}
-            icon={Settings}
+            icon={SettingsRounded}
             onClick={() => tunRef.current?.open()}
           />
         }
@@ -148,7 +147,7 @@ const SettingSystem = ({ onError }: Props) => {
           <>
             <TooltipIcon
               title={t("System Proxy Info")}
-              icon={Settings}
+              icon={SettingsRounded}
               onClick={() => sysproxyRef.current?.open()}
             />
           </>
