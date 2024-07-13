@@ -237,7 +237,7 @@ impl IVerge {
             verge_socks_enabled: Some(false),
             verge_port: Some(7899),
             verge_http_enabled: Some(false),
-            enable_proxy_guard: Some(true),
+            enable_proxy_guard: Some(false),
             use_default_bypass: Some(true),
             proxy_guard_duration: Some(20),
             auto_close_connection: Some(true),
