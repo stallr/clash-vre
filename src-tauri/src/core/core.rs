@@ -60,7 +60,7 @@ impl CoreManager {
             }
         }
 
-        let test_dir = dirs::app_home_dir()?.join("test");
+        let test_dir = dirs::app_home_dir()?;
         let test_dir = dirs::path_to_str(&test_dir)?;
 
         let output = Command::new_sidecar(clash_core)?
