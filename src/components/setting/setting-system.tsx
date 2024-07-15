@@ -1,12 +1,11 @@
 import useSWR from "swr";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { PrivacyTipRounded, SettingsRounded } from "@mui/icons-material";
+import { SettingsRounded } from "@mui/icons-material";
 import {
   checkService,
-  grantPermission,
   installService,
-  restartSidecar,
+  uninstallService,
 } from "@/services/cmds";
 import { useVerge } from "@/hooks/use-verge";
 import { DialogRef, Notice, Switch } from "@/components/base";
@@ -18,6 +17,9 @@ import { TunViewer } from "./mods/tun-viewer";
 import getSystem from "@/utils/get-system";
 import { invoke } from "@tauri-apps/api/tauri";
 import { TooltipIcon } from "@/components/base/base-tooltip-icon";
+import { LoadingButton } from "@mui/lab";
+import { useLockFn } from "ahooks";
+
 interface Props {
   onError?: (err: Error) => void;
 }
@@ -26,13 +28,18 @@ const SettingSystem = ({ onError }: Props) => {
   const { t } = useTranslation();
 
   const { verge, mutateVerge, patchVerge } = useVerge();
-
+  const [serviceLoading, setServiceLoading] = useState(false);
+  const [uninstallServiceLoaing, setUninstallServiceLoading] = useState(false);
   // service mode
-  const { data: serviceStatus } = useSWR("checkService", checkService, {
-    revalidateIfStale: false,
-    shouldRetryOnError: false,
-    focusThrottleInterval: 36e5, // 1 hour
-  });
+  const { data: serviceStatus, mutate: mutateServiceStatus } = useSWR(
+    "checkService",
+    checkService,
+    {
+      revalidateIfStale: false,
+      shouldRetryOnError: false,
+      focusThrottleInterval: 36e5, // 1 hour
+    }
+  );
 
   const serviceRef = useRef<DialogRef>(null);
   const sysproxyRef = useRef<DialogRef>(null);
@@ -50,35 +57,54 @@ const SettingSystem = ({ onError }: Props) => {
   const onChangeData = (patch: Partial<IVergeConfig>) => {
     mutateVerge({ ...verge, ...patch }, false);
   };
-  const { clash_core = "verge-mihomo" } = verge ?? {};
-  const OS = getSystem();
-  const isWIN = getSystem() === "windows";
-  const onGuard = async (e: boolean) => {
-    if (OS === "macos" || OS === "linux") {
-      try {
-        await grantPermission(clash_core);
-      } catch (err: any) {
-        Notice.error(err?.message || err.toString());
-        return false;
+
+  const onInstallOrEnableService = useLockFn(async () => {
+    setServiceLoading(true);
+    try {
+      if (serviceStatus === "uninstall" || serviceStatus === "unknown") {
+        // install service
+        await installService();
+        await mutateServiceStatus();
+        setTimeout(() => {
+          mutateServiceStatus();
+        }, 2000);
+        Notice.success(t("Service Installed Successfully"));
+        setServiceLoading(false);
+      } else {
+        // enable or disable service
+        const enable = serviceStatus === "active";
+        await patchVerge({ enable_service_mode: !enable });
+        onChangeData({ enable_service_mode: !enable });
+        await mutateServiceStatus();
+        setTimeout(() => {
+          mutateServiceStatus();
+        }, 2000);
+        setServiceLoading(false);
       }
-      await restartSidecar();
-    } else {
-      try {
-        const result = await invoke<any>("check_service");
-        if (result?.code !== 0 && result?.code !== 400) {
-          await installService();
-        }
-      } catch (err: any) {
-        try {
-          await installService();
-        } catch (err: any) {
-          Notice.error(err?.message || err.toString());
-          return false;
-        }
-      }
+    } catch (err: any) {
+      await mutateServiceStatus();
+      Notice.error(err.message || err.toString());
+      setServiceLoading(false);
     }
-    return true;
-  };
+  });
+
+  const onUninstallService = useLockFn(async () => {
+    setUninstallServiceLoading(true);
+    try {
+      await uninstallService();
+      await mutateServiceStatus();
+      setTimeout(() => {
+        mutateServiceStatus();
+      }, 2000);
+      Notice.success(t("Service Uninstalled Successfully"));
+      setUninstallServiceLoading(false);
+    } catch (err: any) {
+      await mutateServiceStatus();
+      Notice.error(err.message || err.toString());
+      setUninstallServiceLoading(false);
+    }
+  });
+
   return (
     <SettingList title={t("System Setting")}>
       <SysproxyViewer ref={sysproxyRef} />
@@ -100,13 +126,19 @@ const SettingSystem = ({ onError }: Props) => {
           valueProps="checked"
           onCatch={onError}
           onFormat={onSwitchFormat}
-          onChange={async (e) => {
-            if (e === false || (await onGuard(e))) {
-              const vergeOptions = isWIN
-                ? { enable_service_mode: true, enable_tun_mode: e }
-                : { enable_tun_mode: e };
-              patchVerge(vergeOptions);
-              onChangeData(vergeOptions);
+          onChange={(e) => {
+            if (serviceStatus !== "active") {
+              onChangeData({ enable_tun_mode: false });
+            } else {
+              onChangeData({ enable_tun_mode: e });
+            }
+          }}
+          onGuard={(e) => {
+            if (serviceStatus !== "active" && e) {
+              Notice.error(t("Please enable service mode first"));
+              return Promise.resolve();
+            } else {
+              return patchVerge({ enable_tun_mode: e });
             }
           }}
         >
@@ -114,31 +146,32 @@ const SettingSystem = ({ onError }: Props) => {
         </GuardState>
       </SettingItem>
 
-      <SettingItem
-        label={t("Service Mode")}
-        extra={
-          <TooltipIcon
-            title={t("Service Mode Info")}
-            icon={PrivacyTipRounded}
-            onClick={() => serviceRef.current?.open()}
-          />
-        }
-      >
-        <GuardState
-          value={enable_service_mode ?? false}
-          valueProps="checked"
-          onCatch={onError}
-          onFormat={onSwitchFormat}
-          onChange={(e) => onChangeData({ enable_service_mode: e })}
-          onGuard={(e) => patchVerge({ enable_service_mode: e })}
+      <SettingItem label={t("Service Mode")}>
+        <LoadingButton
+          size="small"
+          variant="contained"
+          sx={{ mr: serviceStatus !== "installed" ? -1 : 0 }}
+          onClick={onInstallOrEnableService}
+          loading={serviceLoading}
         >
-          <Switch
-            edge="end"
-            disabled={
-              serviceStatus !== "active" && serviceStatus !== "installed"
-            }
-          />
-        </GuardState>
+          {serviceStatus === "active"
+            ? t("Disable")
+            : serviceStatus === "installed"
+            ? t("Enable")
+            : t("Install")}
+        </LoadingButton>
+        {serviceStatus === "installed" && (
+          <LoadingButton
+            size="small"
+            variant="outlined"
+            color="error"
+            sx={{ ml: 1, mr: -1 }}
+            onClick={onUninstallService}
+            loading={uninstallServiceLoaing}
+          >
+            {t("Uninstall")}
+          </LoadingButton>
+        )}
       </SettingItem>
 
       <SettingItem
