@@ -88,17 +88,18 @@ pub fn toggle_system_proxy() {
 pub fn toggle_tun_mode() {
     let enable = Config::verge().data().enable_tun_mode;
     let enable = enable.unwrap_or(false);
-    let patch_verge_async = async move {
+
+    tauri::async_runtime::spawn(async move {
         match patch_verge(IVerge {
             enable_tun_mode: Some(!enable),
-            #[cfg(target_os = "windows")]
-            enable_service_mode: Some(true),
             ..IVerge::default()
-        }).await {
+        })
+        .await
+        {
             Ok(_) => handle::Handle::refresh_verge(),
             Err(err) => log::error!(target: "app", "{err}"),
         }
-    };
+    });
 }
 
 /// 修改clash的订阅
