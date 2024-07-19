@@ -8,9 +8,9 @@ use tauri::{
 };
 
 #[cfg(not(feature = "verge-dev"))]
-pub static APP_ID: &str = "us.un.clashrev";
+pub static APP_ID: &str = "un.un.clashrev";
 #[cfg(feature = "verge-dev")]
-pub static APP_ID: &str = "us.un.clashrev";
+pub static APP_ID: &str = "un.un.clashrev";
 
 pub static PORTABLE_FLAG: OnceCell<bool> = OnceCell::new();
 

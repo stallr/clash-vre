@@ -5,7 +5,7 @@
       "iconPath": "icons/tray-icon.ico"
     },
     "bundle": {
-      "identifier": "us.un.clashrev",
+      "identifier": "un.un.clashrev",
       "targets": ["nsis"],
       "windows": {
         "certificateThumbprint": null,

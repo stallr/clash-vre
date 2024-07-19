@@ -6,7 +6,7 @@
       "iconAsTemplate": true
     },
     "bundle": {
-      "identifier": "us.un.clashrev",
+      "identifier": "un.un.clashrev",
       "targets": ["app", "dmg"],
       "macOS": {
         "frameworks": [],
