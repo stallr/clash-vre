@@ -99,45 +99,6 @@ pub fn toggle_tun_mode() {
             Err(err) => log::error!(target: "app", "{err}"),
         }
     };
-
-    #[cfg(any(target_os = "macos", target_os = "linux"))]
-    tauri::async_runtime::spawn(async move {
-        if !enable {
-            use crate::core::manager::grant_permission;
-            let clash_core = Config::verge().data().clash_core.clone();
-            let clash_core: String = clash_core.unwrap_or_else(|| "verge-mihomo".to_owned());
-            if let Err(err) = grant_permission(clash_core) {
-                log::error!(target: "app", "Grant Permission Error: {err}");
-                return;
-            }
-            let _ = crate::cmds::restart_sidecar().await;
-        }
-        patch_verge_async.await;
-    });
-    
-    #[cfg(target_os = "windows")]
-    tauri::async_runtime::spawn(async move {
-        match crate::cmds::service::check_service().await {
-            Ok(response) => {
-                match &response.code {
-                    0 | 400 => (),
-                    _ => {
-                        if let Err(e) = crate::cmds::service::install_service().await {
-                            log::error!("Error installing service: {}", e);
-                            return;
-                        }
-                    }
-                }
-            },
-            Err(_) => {
-                if let Err(e) = crate::cmds::service::install_service().await {
-                    log::error!("Error installing service: {}", e);
-                    return;
-                }
-            }
-        }
-        patch_verge_async.await;
-    });
 }
 
 /// 修改clash的订阅
