@@ -126,6 +126,7 @@ impl IProfiles {
         if item.uid.is_none() {
             bail!("the uid should not be null");
         }
+        let uid = item.uid.clone();
 
         if let Some(ref name) = item.name {
             if self.get_item_byname(name).is_ok() {
@@ -149,6 +150,12 @@ impl IProfiles {
                 .with_context(|| format!("failed to write to file \"{}\"", file))?;
         }
 
+        if self.current.is_none()
+            && (item.itype == Some("remote".to_string()) || item.itype == Some("local".to_string()))
+        {
+            self.current = uid;
+        }
+
         if self.items.is_none() {
             self.items = Some(vec![]);
         }
@@ -156,6 +163,7 @@ impl IProfiles {
         if let Some(items) = self.items.as_mut() {
             items.push(item)
         }
+
         self.save_file()
     }
 
@@ -376,10 +384,15 @@ impl IProfiles {
         }
         // delete the original uid
         if current == uid {
-            self.current = match !items.is_empty() {
-                true => items[0].uid.clone(),
-                false => None,
-            };
+            self.current = None;
+            for item in items.iter() {
+                if item.itype == Some("remote".to_string())
+                    || item.itype == Some("local".to_string())
+                {
+                    self.current = item.uid.clone();
+                    break;
+                }
+            }
         }
 
         self.items = Some(items);
