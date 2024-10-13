@@ -243,12 +243,12 @@ pub async fn resolve_scheme(param: String) -> Result<()> {
         .trim_start_matches("clash://install-config?url=");
     match import_profile(url.to_string(), None).await {
         Ok(_) => {
+            let _ = enhance_profiles().await;
             notification::Notification::new(crate::utils::dirs::APP_ID)
                 .title("Clash Verge")
                 .body("Import profile success")
                 .show()
                 .unwrap();
-            enhance_profiles();
         }
         Err(e) => {
             notification::Notification::new(crate::utils::dirs::APP_ID)
