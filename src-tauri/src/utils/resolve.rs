@@ -1,4 +1,4 @@
-use crate::cmds::import_profile;
+use crate::cmds::{enhance_profiles, import_profile};
 use crate::config::IVerge;
 use crate::{config::Config, core::*, utils::init, utils::server};
 use crate::{log_err, trace_err};
@@ -248,6 +248,7 @@ pub async fn resolve_scheme(param: String) -> Result<()> {
                 .body("Import profile success")
                 .show()
                 .unwrap();
+            enhance_profiles();
         }
         Err(e) => {
             notification::Notification::new(crate::utils::dirs::APP_ID)
